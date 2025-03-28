@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Analysis Dashboard</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>Stock Analysis Dashboard</h2>
+            <div class="tab-container">
+                <button class="tab-btn active" data-tab="analysis">Analysis</button>
+                <button class="tab-btn" data-tab="settings">Settings</button>
+                <button class="tab-btn" data-tab="history">History</button>
+            </div>
+        </header>
+
+        <!-- Analysis Tab -->
+        <div class="tab-content active" id="analysis">
+            <div class="analysis-controls">
+                <div class="quick-actions">
+                    <button id="analyzeStocks" class="primary-btn">
+                        <i class="icon-analyze"></i>Analyze Now
+                    </button>
+                    <select id="analysisType">
+                        <option value="full">Full Analysis</option>
+                        <option value="quick">Quick Overview</option>
+                        <option value="technical">Technical Analysis</option>
+                        <option value="news">News Only</option>
+                    </select>
+                </div>
+
+                <div class="filters">
+                    <select id="marketFilter">
+                        <option value="all">All Markets</option>
+                        <option value="nasdaq">NASDAQ</option>
+                        <option value="nyse">NYSE</option>
+                    </select>
+                    <select id="sectorFilter">
+                        <option value="all">All Sectors</option>
+                        <option value="tech">Technology</option>
+                        <option value="finance">Finance</option>
+                        <option value="healthcare">Healthcare</option>
+                    </select>
+                </div>
+
+                <div class="watchlist">
+                    <h4>Watchlist</h4>
+                    <div id="watchlistStocks"></div>
+                    <input type="text" id="addStock" placeholder="Add stock (e.g., AAPL)">
+                    <button id="addToWatchlist" class="secondary-btn">Add</button>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div id="loadingSpinner" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Analyzing market data...</p>
+                </div>
+                
+                <div id="analysisResults" class="hidden">
+                    <div class="summary-cards">
+                        <div class="card">
+                            <h4>Top Performers</h4>
+                            <div id="topPerformers"></div>
+                        </div>
+                        <div class="card">
+                            <h4>Market Sentiment</h4>
+                            <div id="marketSentiment"></div>
+                        </div>
+                        <div class="card">
+                            <h4>Key Metrics</h4>
+                            <div id="keyMetrics"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="detailed-analysis">
+                        <h4>Detailed Analysis</h4>
+                        <div id="detailedResults"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-content" id="settings">
+            <div class="settings-section">
+                <h3>API Configuration</h3>
+                <div class="api-keys">
+                    <div class="input-group">
+                        <label>Alpha Vantage API Key</label>
+                        <input type="password" id="alphaVantageKey">
+                        <button class="show-hide-btn">Show/Hide</button>
+                    </div>
+                    <div class="input-group">
+                        <label>Gemini API Key</label>
+                        <input type="password" id="geminiKey">
+                        <button class="show-hide-btn">Show/Hide</button>
+                    </div>
+                    <button id="saveKeys" class="primary-btn">Save Keys</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Email Notifications</h3>
+                <div class="email-settings">
+                    <div class="input-group">
+                        <label>Email Address</label>
+                        <input type="email" id="emailRecipient">
+                    </div>
+                    <div class="notification-preferences">
+                        <label><input type="checkbox" id="dailyReport"> Daily Report</label>
+                        <label><input type="checkbox" id="alertsOnly"> Important Alerts Only</label>
+                        <label><input type="checkbox" id="watchlistAlerts"> Watchlist Alerts</label>
+                    </div>
+                    <button id="saveEmailSettings" class="primary-btn">Save Email Settings</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Analysis Preferences</h3>
+                <div class="analysis-settings">
+                    <div class="input-group">
+                        <label>Default Analysis Type</label>
+                        <select id="defaultAnalysisType">
+                            <option value="full">Full Analysis</option>
+                            <option value="quick">Quick Overview</option>
+                            <option value="technical">Technical Analysis</option>
+                        </select>
+                    </div>
+                    <div class="threshold-settings">
+                        <label>Alert Thresholds</label>
+                        <input type="number" id="priceChangeThreshold" placeholder="Price Change %">
+                        <input type="number" id="volumeThreshold" placeholder="Volume Change %">
+                    </div>
+                    <button id="saveAnalysisSettings" class="primary-btn">Save Analysis Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div class="tab-content" id="history">
+            <div class="history-filters">
+                <input type="date" id="historyDate">
+                <select id="historyType">
+                    <option value="all">All Analysis</option>
+                    <option value="manual">Manual Analysis</option>
+                    <option value="scheduled">Scheduled Analysis</option>
+                </select>
+                <button id="clearHistory" class="secondary-btn">Clear History</button>
+            </div>
+            
+            <div class="history-list" id="analysisHistory">
+                <!-- History items will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/stock_functions.js"></script>
+    <script src="../scripts/email_service.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html> 

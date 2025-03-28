@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Stock Analysis Assistant",
+  "version": "1.0",
+  "description": "Analyzes top performing stocks using Alpha Vantage and Gemini AI",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://www.alphavantage.co/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png",
+      "192": "images/icon192.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "192": "images/icon192.png"
+  }
+} 
